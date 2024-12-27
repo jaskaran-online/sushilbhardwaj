@@ -19,7 +19,7 @@ export function ProfessionalProfile() {
                     >
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl -z-10" />
                         <Image
-                            src="/sushil-bhardwaj.jpg"
+                            src="https://dtzulyujzhqiu.cloudfront.net/remaximpactrealty6806/profiles/1735247210_1300381.jpg"
                             alt="Sushil Bhardwaj"
                             width={600}
                             height={750}

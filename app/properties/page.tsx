@@ -10,7 +10,7 @@ export default function PropertiesPage() {
         <main className="min-h-screen">
             <Header
                 title="Our Properties"
-                backgroundImage="/images/properties-header.jpg"
+                backgroundImage="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80"
             />
             <div className="container mx-auto px-4 py-12">
                 <h1 className="text-4xl font-bold text-gray-800 mb-8">Find Your Dream Home</h1>

@@ -92,7 +92,7 @@ export function AreasWeCover() {
             <motion.div
               key={area.name}
               variants={itemVariants}
-              className="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300"
+              className="group relative overflow-hidden rounded-sm bg-white shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <div className="relative h-48 overflow-hidden">
                 <Image
@@ -118,7 +118,7 @@ export function AreasWeCover() {
 
                 <p className="text-gray-600 mb-4">{area.description}</p>
 
-                <button className="flex items-center text-primary font-medium group/btn">
+                <button className="flex items-center text-primary font-medium group/btn bg-[#1a3668] text-white hover:bg-[#1a3668]/90 rounded-sm  px-4 py-2">
                   View Properties
                   <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
                 </button>

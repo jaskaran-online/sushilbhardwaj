@@ -11,12 +11,12 @@ export default function AboutPage() {
         <main className="min-h-screen">
             <Header
                 title="About Us"
-                backgroundImage="/images/about-header.jpg"
+                backgroundImage="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80"
             />
             <div className="container mx-auto px-4 py-12">
                 <ProfessionalProfile />
                 <CompanyValues />
-                <TeamProfile />
+                {/* <TeamProfile /> */}
                 <ProjectGallery />
             </div>
         </main>

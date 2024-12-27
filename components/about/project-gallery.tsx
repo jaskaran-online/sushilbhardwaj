@@ -8,37 +8,37 @@ const projects = [
     {
         id: 1,
         title: 'Luxury Villa in Beverly Hills',
-        image: '/images/projects/villa.jpg',
+        image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&q=80',
         description: 'Sold for $12.5M - A stunning 6-bedroom modern villa'
     },
     {
         id: 2,
         title: 'Downtown Penthouse',
-        image: '/images/projects/penthouse.jpg',
+        image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80',
         description: 'Sold for $8.2M - 360° city views'
     },
     {
         id: 3,
         title: 'Beachfront Property',
-        image: '/images/projects/beach.jpg',
+        image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80',
         description: 'Sold for $15.7M - Private beach access'
     },
     {
         id: 4,
         title: 'Modern Family Home',
-        image: '/images/projects/modern.jpg',
+        image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80',
         description: 'Sold for $4.5M - Smart home technology'
     },
     {
         id: 5,
         title: 'Historic Mansion',
-        image: '/images/projects/mansion.jpg',
+        image: 'https://images.unsplash.com/photo-1505843513577-22bb7d21e455?auto=format&fit=crop&q=80',
         description: 'Sold for $18.9M - Fully restored 1920s estate'
     },
     {
         id: 6,
         title: 'Urban Loft',
-        image: '/images/projects/loft.jpg',
+        image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80',
         description: 'Sold for $3.2M - Industrial chic design'
     }
 ]
