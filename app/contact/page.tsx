@@ -3,6 +3,7 @@ import { ContactForm } from '@/components/contact/contact-form'
 import { ContactInfo } from '@/components/contact/contact-info'
 import { GoogleMap } from '@/components/contact/google-map'
 import { FAQ } from '@/components/contact/faq'
+import Header from '@/components/layout/header'
 
 export const metadata: Metadata = {
     title: 'Contact Us | My Dream Home',
@@ -12,6 +13,10 @@ export const metadata: Metadata = {
 export default function ContactPage() {
     return (
         <main className="min-h-screen">
+            <Header
+                title="Contact Us"
+                backgroundImage="/images/contact-header.jpg"
+            />
             <div className="container mx-auto px-4 py-12">
                 <div className="grid lg:grid-cols-2 gap-12">
                     <ContactForm />

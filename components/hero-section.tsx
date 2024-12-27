@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 export function HeroSection() {
   return (
@@ -17,7 +18,7 @@ export function HeroSection() {
           backgroundSize: "cover",
         }}
       >
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/60 dark:bg-black/70" />
       </div>
 
       {/* Content */}
@@ -36,11 +37,16 @@ export function HeroSection() {
           </p>
 
           {/* Search Bar */}
-          <div className="max-w-3xl mx-auto bg-white rounded-lg p-2 flex flex-col md:flex-row gap-2">
+          <div className={cn(
+            "max-w-3xl mx-auto rounded-lg p-2 flex flex-col md:flex-row gap-2",
+            "bg-white/95 dark:bg-gray-900/95",
+            "backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:supports-[backdrop-filter]:bg-gray-900/80",
+            "border border-gray-200/20 dark:border-gray-700/30"
+          )}>
             <Input
               type="text"
               placeholder="Enter location, property type, or keywords..."
-              className="flex-grow"
+              className="flex-grow bg-transparent"
             />
             <Button size="lg" className="w-full md:w-auto">
               <Search className="mr-2 h-4 w-4" />

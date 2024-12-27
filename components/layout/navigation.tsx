@@ -29,8 +29,10 @@ export function Navigation() {
   return (
     <motion.header
       className={cn(
-        "fixed w-full z-50 transition-colors duration-300",
-        isScrolled ? "bg-background shadow-md" : "bg-transparent"
+        "fixed w-full z-50 transition-all duration-300",
+        isScrolled
+          ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+          : "bg-transparent"
       )}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -40,7 +42,7 @@ export function Navigation() {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
             <Home className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">My Dream Home</span>
+            <span className="text-xl font-bold text-foreground">My Dream Home</span>
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
@@ -48,7 +50,7 @@ export function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium hover:text-primary transition-colors"
+                className="text-sm font-medium text-foreground/90 hover:text-primary transition-colors"
               >
                 {item.label}
               </Link>
@@ -65,6 +67,7 @@ export function Navigation() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
+              className="text-foreground"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -79,12 +82,12 @@ export function Navigation() {
             exit={{ opacity: 0, y: -10 }}
             className="md:hidden"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-lg mt-2 border">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block px-3 py-2 rounded-md text-base font-medium hover:text-primary transition-colors"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-foreground/90 hover:text-primary transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
