@@ -1,6 +1,7 @@
 -- Create enum types for property status and type
 CREATE TYPE property_status AS ENUM ('for_sale', 'for_rent', 'sold', 'rented');
 CREATE TYPE property_type AS ENUM ('house', 'apartment', 'condo', 'townhouse', 'villa', 'land');
+CREATE TYPE inquiry_status AS ENUM ('new', 'contacted', 'resolved', 'archived');
 
 -- Create tables
 CREATE TABLE agents (
@@ -72,7 +73,7 @@ CREATE TABLE contact_inquiries (
     message TEXT NOT NULL,
     property_id UUID REFERENCES properties(id),
     agent_id UUID REFERENCES agents(id),
-    status VARCHAR(50) DEFAULT 'new',
+    status inquiry_status DEFAULT 'new',
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );

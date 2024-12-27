@@ -1,18 +1,18 @@
-import { Hero } from '@/components/home/hero'
+import { HeroSection } from '@/components/home/hero-section'
 import { FeaturedProperties } from '@/components/home/featured-properties'
 import { AreasWeCover } from '@/components/home/areas-we-cover'
 import { WhyChooseUs } from '@/components/home/why-choose-us'
-import { ClientTestimonials } from '@/components/home/client-testimonials'
+import { Testimonials } from '@/components/home/testimonials'
 import { CallToAction } from '@/components/home/call-to-action'
 
 export default function HomePage() {
     return (
         <>
-            <Hero />
+            <HeroSection />
             <FeaturedProperties />
             <AreasWeCover />
             <WhyChooseUs />
-            <ClientTestimonials />
+            <Testimonials />
             <CallToAction />
         </>
     )
