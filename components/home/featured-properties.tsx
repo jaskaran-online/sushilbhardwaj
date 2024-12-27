@@ -1,42 +1,60 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { PropertyCard } from "@/components/home/property-card"
-
-const properties = [
-  {
-    id: 1,
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-    title: "Luxury Villa",
-    price: "$1,250,000",
-    location: "Downtown Toronto",
-    beds: 4,
-    baths: 3,
-    sqft: 2500
-  },
-  {
-    id: 2,
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-    title: "Modern Apartment",
-    price: "$750,000",
-    location: "North York",
-    beds: 2,
-    baths: 2,
-    sqft: 1200
-  },
-  {
-    id: 3,
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-    title: "Family Home",
-    price: "$950,000",
-    location: "Mississauga",
-    beds: 3,
-    baths: 2,
-    sqft: 1800
-  }
-]
+import { getFeaturedProperties } from "@/lib/supabase"
+import type { Property } from "@/lib/supabase"
 
 export function FeaturedProperties() {
+  const [properties, setProperties] = useState<Property[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    async function loadProperties() {
+      try {
+        const data = await getFeaturedProperties()
+        setProperties(data)
+      } catch (err) {
+        setError('Failed to load properties')
+        console.error(err)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadProperties()
+  }, [])
+
+  if (isLoading) {
+    return (
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <div className="h-8 w-64 bg-gray-200 rounded animate-pulse mx-auto mb-4" />
+            <div className="h-4 w-96 bg-gray-200 rounded animate-pulse mx-auto" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-white rounded-lg shadow-md h-[400px] animate-pulse" />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (error) {
+    return (
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 text-center text-red-600">
+          {error}
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -53,7 +71,17 @@ export function FeaturedProperties() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {properties.map((property) => (
-            <PropertyCard key={property.id} {...property} />
+            <PropertyCard
+              key={property.id}
+              id={property.id}
+              image={property.images?.[0]?.image_url || ''}
+              title={property.title}
+              price={property.price.toString()}
+              location={property.city}
+              beds={property.bedrooms}
+              baths={property.bathrooms}
+              sqft={property.square_feet}
+            />
           ))}
         </div>
       </div>

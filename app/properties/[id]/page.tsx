@@ -1,123 +1,87 @@
 "use client"
 
+import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import Header from '@/components/layout/header'
 import { PropertyGallery } from '@/components/properties/property-gallery'
 import { PropertyDetails } from '@/components/properties/property-details'
 import { PropertyAmenities } from '@/components/properties/property-amenities'
 import { PropertyContact } from '@/components/properties/property-contact'
-
-// Agent information
-const agent = {
-    name: "Sushil Bhardwaj",
-    phone: "+1 (416) 555-0123",
-    email: "sushil@mydreamhome.com",
-    image: "https://dtzulyujzhqiu.cloudfront.net/remaximpactrealty6806/profiles/1735247210_1300381.jpg"
-};
-
-const properties = [
-    {
-        id: 1,
-        title: "Luxury Villa",
-        price: "$1,250,000",
-        location: "Downtown Toronto",
-        description: "Experience luxury living at its finest in this stunning villa located in the heart of Downtown Toronto. This magnificent property offers breathtaking views of the city skyline and features premium finishes throughout.",
-        beds: 4,
-        baths: 3,
-        sqft: 2500,
-        images: [
-            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-            "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-            "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-        ],
-        amenities: [
-            "Swimming Pool",
-            "Home Theater",
-            "Wine Cellar",
-            "Smart Home System",
-            "Private Elevator",
-            "Rooftop Terrace"
-        ],
-        agent
-    },
-    {
-        id: 2,
-        title: "Modern Apartment",
-        price: "$750,000",
-        location: "North York",
-        description: "Stunning modern apartment with open concept design and high-end finishes. Perfect for urban professionals seeking luxury and convenience in North York.",
-        beds: 2,
-        baths: 2,
-        sqft: 1200,
-        images: [
-            "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-            "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-        ],
-        amenities: [
-            "Fitness Center",
-            "Concierge Service",
-            "Parking Space",
-            "Balcony",
-            "Pet Friendly",
-            "Storage Unit"
-        ],
-        agent
-    },
-    {
-        id: 3,
-        title: "Family Home",
-        price: "$950,000",
-        location: "Mississauga",
-        description: "Beautiful family home in a quiet neighborhood of Mississauga. Features a spacious backyard, modern kitchen, and plenty of natural light throughout.",
-        beds: 3,
-        baths: 2,
-        sqft: 1800,
-        images: [
-            "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-            "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-        ],
-        amenities: [
-            "Large Backyard",
-            "Modern Kitchen",
-            "Home Office",
-            "Garage",
-            "Central AC",
-            "Security System"
-        ],
-        agent
-    }
-];
+import { getPropertyById } from '@/lib/supabase'
+import type { Property } from '@/lib/supabase'
 
 export default function PropertyPage() {
-    const params = useParams();
-    const property = properties.find(p => p.id === Number(params.id));
+    const params = useParams()
+    const [property, setProperty] = useState<Property | null>(null)
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
 
-    if (!property) {
-        return <div>Property not found</div>;
+    useEffect(() => {
+        async function loadProperty() {
+            try {
+                const data = await getPropertyById(params.id as string)
+                setProperty(data)
+            } catch (err) {
+                setError('Failed to load property details')
+                console.error(err)
+            } finally {
+                setIsLoading(false)
+            }
+        }
+
+        loadProperty()
+    }, [params.id])
+
+    if (isLoading) {
+        return (
+            <main className="min-h-screen">
+                <div className="h-[400px] bg-gray-200 animate-pulse" />
+                <div className="container mx-auto px-4 py-12">
+                    <div className="grid lg:grid-cols-3 gap-8">
+                        <div className="lg:col-span-2">
+                            <div className="h-[500px] bg-gray-200 animate-pulse mb-8 rounded-lg" />
+                            <div className="bg-gray-200 animate-pulse h-64 mb-8 rounded-lg" />
+                            <div className="bg-gray-200 animate-pulse h-48 rounded-lg" />
+                        </div>
+                        <div>
+                            <div className="bg-gray-200 animate-pulse h-[600px] rounded-lg" />
+                        </div>
+                    </div>
+                </div>
+            </main>
+        )
+    }
+
+    if (error || !property) {
+        return (
+            <main className="min-h-screen">
+                <div className="container mx-auto px-4 py-12 text-center text-red-600">
+                    {error || 'Property not found'}
+                </div>
+            </main>
+        )
     }
 
     return (
         <main className="min-h-screen">
             <Header
                 title={property.title}
-                backgroundImage={property.images[0]}
-                subtitle={property.location}
+                backgroundImage={property.images?.[0]?.image_url}
+                subtitle={property.city}
             />
 
             <div className="container mx-auto px-4 py-12">
                 <div className="grid lg:grid-cols-3 gap-8">
-                    <div className="lg:col-span-2 ">
-                        <PropertyGallery images={property.images} />
+                    <div className="lg:col-span-2">
+                        <PropertyGallery images={property.images?.map(img => img.image_url) || []} />
                         <PropertyDetails property={property} />
-                        <PropertyAmenities amenities={property.amenities} />
+                        <PropertyAmenities amenities={property.amenities?.map(a => a.name) || []} />
                     </div>
                     <div>
-                        <PropertyContact agent={property.agent} />
+                        <PropertyContact agent={property.agent!} propertyId={property.id} />
                     </div>
                 </div>
             </div>
         </main>
-    );
+    )
 } 
