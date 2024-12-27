@@ -6,6 +6,7 @@ import { motion, useScroll } from "framer-motion"
 import { Home, Menu, X, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -29,7 +30,7 @@ export function Navigation() {
     <motion.header
       className={cn(
         "fixed w-full z-50 transition-colors duration-300",
-        isScrolled ? "bg-white shadow-md" : "bg-transparent"
+        isScrolled ? "bg-background shadow-md" : "bg-transparent"
       )}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -52,40 +53,44 @@ export function Navigation() {
                 {item.label}
               </Link>
             ))}
+            <ThemeToggle />
             <Button>
               <Phone className="mr-2 h-4 w-4" />
               Contact Agent
             </Button>
           </div>
 
-          <button
-            className="md:hidden"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="flex items-center space-x-4 md:hidden">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
 
+        {/* Mobile Menu */}
         {isOpen && (
           <motion.div
-            className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
+            className="md:hidden"
           >
-            <div className="flex flex-col p-4 space-y-4">
+            <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-sm font-medium hover:text-primary transition-colors"
+                  className="block px-3 py-2 rounded-md text-base font-medium hover:text-primary transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
-              <Button className="w-full">
+              <Button className="w-full mt-4">
                 <Phone className="mr-2 h-4 w-4" />
                 Contact Agent
               </Button>
