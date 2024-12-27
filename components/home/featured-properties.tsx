@@ -47,10 +47,10 @@ export function FeaturedProperties() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold mb-4">Featured Properties</h2>
+          <h2 className="text-3xl font-bold mb-4 text-[#1a3668]">Featured Properties</h2>
           <p className="text-gray-600">Discover our hand-picked selection of premium properties</p>
         </motion.div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {properties.map((property) => (
             <PropertyCard key={property.id} {...property} />

@@ -34,17 +34,17 @@ export function PropertyContact({ agent }: PropertyContactProps) {
                 <p className="text-gray-600">Real Estate Agent</p>
             </div>
 
-            <div className="space-y-4 mb-6">
+            <div className="space-y-4 mb-6 w-full">
                 <a
                     href={`tel:${agent.phone}`}
-                    className="flex items-center space-x-3 text-gray-700 hover:text-primary transition-colors"
+                    className="flex items-center space-x-3 text-gray-700 hover:text-primary transition-colors text-center mx-auto"
                 >
                     <Phone className="w-5 h-5" />
                     <span>{agent.phone}</span>
                 </a>
                 <a
                     href={`mailto:${agent.email}`}
-                    className="flex items-center space-x-3 text-gray-700 hover:text-primary transition-colors"
+                    className="flex items-center space-x-3 text-gray-700 hover:text-primary transition-colors text-center mx-auto"
                 >
                     <Mail className="w-5 h-5" />
                     <span>{agent.email}</span>

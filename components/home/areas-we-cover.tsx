@@ -75,7 +75,7 @@ export function AreasWeCover() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Areas We Cover</h2>
+          <h2 className="text-4xl font-bold mb-4 text-[#1a3668]">Areas We Cover</h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             Discover your perfect home in these thriving neighborhoods across the Greater Toronto Area
           </p>

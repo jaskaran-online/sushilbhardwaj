@@ -7,6 +7,14 @@ import { PropertyDetails } from '@/components/properties/property-details'
 import { PropertyAmenities } from '@/components/properties/property-amenities'
 import { PropertyContact } from '@/components/properties/property-contact'
 
+// Agent information
+const agent = {
+    name: "Sushil Bhardwaj",
+    phone: "+1 (416) 555-0123",
+    email: "sushil@mydreamhome.com",
+    image: "https://dtzulyujzhqiu.cloudfront.net/remaximpactrealty6806/profiles/1735247210_1300381.jpg"
+};
+
 const properties = [
     {
         id: 1,
@@ -30,12 +38,7 @@ const properties = [
             "Private Elevator",
             "Rooftop Terrace"
         ],
-        agent: {
-            name: "Sarah Johnson",
-            phone: "+1 (416) 555-0123",
-            email: "sarah@mydreamhome.com",
-            image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80"
-        }
+        agent
     },
     {
         id: 2,
@@ -59,12 +62,7 @@ const properties = [
             "Pet Friendly",
             "Storage Unit"
         ],
-        agent: {
-            name: "Michael Chen",
-            phone: "+1 (416) 555-0124",
-            email: "michael@mydreamhome.com",
-            image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80"
-        }
+        agent
     },
     {
         id: 3,
@@ -88,12 +86,7 @@ const properties = [
             "Central AC",
             "Security System"
         ],
-        agent: {
-            name: "Emily Brown",
-            phone: "+1 (416) 555-0125",
-            email: "emily@mydreamhome.com",
-            image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80"
-        }
+        agent
     }
 ];
 
@@ -115,7 +108,7 @@ export default function PropertyPage() {
 
             <div className="container mx-auto px-4 py-12">
                 <div className="grid lg:grid-cols-3 gap-8">
-                    <div className="lg:col-span-2">
+                    <div className="lg:col-span-2 ">
                         <PropertyGallery images={property.images} />
                         <PropertyDetails property={property} />
                         <PropertyAmenities amenities={property.amenities} />

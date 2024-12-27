@@ -37,7 +37,7 @@ export function WhyChooseUs() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold mb-4">Why Choose Us</h2>
+          <h2 className="text-3xl font-bold mb-4 text-[#1a3668]">Why Choose Us</h2>
           <p className="text-gray-600">Discover what makes us the best choice for your real estate needs</p>
         </motion.div>
 
