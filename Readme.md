@@ -1,185 +1,185 @@
-# My Dream Home - Real Estate Website Documentation
+# My Dream Home - Real Estate Website
 
 ## Project Overview
-My Dream Home is a modern real estate website built with Next.js 14+, TypeScript, and Tailwind CSS. The website is designed to showcase properties, provide detailed information about listings, and facilitate communication between potential buyers and the real estate agent.
+My Dream Home is a modern real estate website built with Next.js 14+, TypeScript, and Tailwind CSS. The website features both a public-facing frontend for property listings and a secure admin panel for content management.
 
 ## Tech Stack
 - **Framework**: Next.js 14+ with TypeScript
 - **Styling**: Tailwind CSS
+- **Database**: Supabase
+- **Authentication**: Supabase Auth
 - **Animations**: Framer Motion
 - **Icons**: Lucide Icons
-- **Image Optimization**: Next.js Image Component
-- **Form Handling**: React Hook Form (planned)
-- **Data Fetching**: SWR (planned)
+- **Form Handling**: React Hook Form
+- **Data Fetching**: Supabase Client
+
+## Project Structure
+
+```
+app/
+├── (admin)/                  # Admin route group
+│   ├── layout.tsx           # Admin layout wrapper
+│   ├── login/
+│   │   └── page.tsx        # Admin login
+│   └── admin/              # Protected admin routes
+│       ├── page.tsx        # Dashboard
+│       ├── properties/     # Properties management
+│       ├── areas/          # Areas management
+│       └── inquiries/      # Inquiries management
+│
+├── (frontend)/              # Frontend route group
+│   ├── layout.tsx          # Frontend layout with nav & footer
+│   ├── page.tsx           # Home page
+│   ├── properties/        # Property listings
+│   ├── about/            # About page
+│   └── contact/          # Contact page
+│
+└── layout.tsx              # Root layout
+
+components/
+├── admin/                  # Admin components
+│   ├── layout-client.tsx   # Admin layout with authentication
+│   ├── login-client.tsx    # Login form
+│   ├── dashboard-client.tsx
+│   └── properties-client.tsx
+├── home/                   # Homepage components
+├── properties/            # Property components
+├── about/                # About page components
+├── contact/              # Contact components
+└── layout/               # Shared layout components
+```
 
 ## Core Features
+
+### Frontend
 1. **Property Listings**
-2. **Property Search & Filtering**
-3. **Interactive Maps**
-4. **Contact Forms**
-5. **Image Galleries**
-6. **Responsive Design**
-7. **SEO Optimization**
+   - Featured properties carousel
+   - Advanced search and filtering
+   - Interactive map integration
+   - Detailed property views
 
-## Page Structure
+2. **User Interface**
+   - Responsive design
+   - Modern animations
+   - Optimized images
+   - SEO-friendly structure
 
-### 1. Homepage (`app/page.tsx`)
-Key sections:
-- Hero Section with property search
-- Featured Properties carousel
-- Areas We Cover with interactive map
-- Why Choose Us section
-- Client Testimonials
-- Call-to-Action for property consultation
+3. **Contact System**
+   - Property inquiry forms
+   - Agent contact forms
+   - Office location map
+   - FAQ section
 
-Components:
-- `components/home/hero-section.tsx`
-- `components/home/featured-properties.tsx`
-- `components/home/areas-we-cover.tsx`
-- `components/home/why-choose-us.tsx`
-- `components/home/testimonials.tsx`
-- `components/home/call-to-action.tsx`
+### Admin Panel
+1. **Authentication**
+   - Secure login system
+   - Protected routes
+   - Session management
 
-### 2. Property Details (`app/properties/[id]/page.tsx`)
-Dynamic route for individual property listings showing:
-- Property images gallery
-- Detailed information
-- Amenities list
-- Contact agent form
+2. **Content Management**
+   - Property CRUD operations
+   - Area management
+   - Inquiry handling
+   - Image upload and management
 
-Components:
-- `components/properties/property-gallery.tsx`
-- `components/properties/property-details.tsx`
-- `components/properties/property-amenities.tsx`
-- `components/properties/property-contact.tsx`
+3. **Dashboard**
+   - Overview statistics
+   - Recent inquiries
+   - Property metrics
+   - User activity
 
-### 3. Properties Search (`app/properties/page.tsx`)
-Advanced search functionality with:
-- Filter options
-- Property grid view
-- Interactive map view
+## Database Schema
 
-Components:
-- `components/properties/property-search.tsx`
-- `components/properties/property-grid.tsx`
-- `components/properties/property-map.tsx`
+### Tables
+1. **properties**
+   - Basic property information
+   - Location details
+   - Price and status
+   - Features and amenities
 
-### 4. About Page (`app/about/page.tsx`)
-Company and agent information:
-- Professional profile of Sushil Bhardwaj
-- Company values
-- Project gallery
+2. **areas**
+   - Coverage areas
+   - Area descriptions
+   - Map coordinates
 
-Components:
-- `components/about/professional-profile.tsx`
-- `components/about/company-values.tsx`
-- `components/about/project-gallery.tsx`
+3. **inquiries**
+   - Contact form submissions
+   - Property inquiries
+   - User information
 
-### 5. Contact Page (`app/contact/page.tsx`)
-Contact information and forms:
-- Contact form
-- Office location map
-- Contact details
-- FAQ section
+4. **agents**
+   - Agent profiles
+   - Contact information
+   - Credentials
 
-Components:
-- `components/contact/contact-form.tsx`
-- `components/contact/contact-info.tsx`
-- `components/contact/google-map.tsx`
-- `components/contact/faq.tsx`
+## Development Setup
 
-## Shared Components
+1. **Environment Variables**
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
 
-### 1. Layout Components
-- `components/layout/header.tsx`: Page headers with background images
-- `components/layout/navbar.tsx`: Navigation menu
-- `components/layout/footer.tsx`: Site footer
+2. **Installation**
+   ```bash
+   npm install
+   ```
 
-### 2. Property Card (`components/home/property-card.tsx`)
-Reusable property card component used in:
-- Featured properties
-- Property search results
-- Related properties
+3. **Development Server**
+   ```bash
+   npm run dev
+   ```
 
-Features:
-- Image with hover effect
-- Price tag
-- Property details
-- Link to property page
+4. **Database Setup**
+   - Run schema.sql for table creation
+   - Run seed.sql for sample data
 
-## Key Features Implementation
+## Deployment
 
-### 1. Property Search
-- Advanced filters for price, location, property type
-- Real-time search results
-- Map integration showing property locations
-- Sort and filter functionality
+1. **Build**
+   ```bash
+   npm run build
+   ```
 
-### 2. Image Galleries
-- Smooth transitions between images
-- Thumbnail navigation
-- Responsive design
-- Image optimization
+2. **Production**
+   ```bash
+   npm start
+   ```
 
-### 3. Contact Forms
-- Form validation
-- Error handling
-- Success notifications
-- Direct contact options
+## Best Practices
 
-### 4. Maps Integration
-- Interactive property locations
-- Area coverage visualization
-- Office location display
-- Custom markers and popups
+1. **Code Organization**
+   - Route groups for admin/frontend separation
+   - Client/Server component separation
+   - Reusable components
+   - Type safety with TypeScript
 
-## Agent Information
-Sushil Bhardwaj is featured as the primary real estate agent across the site:
-- Contact details consistent across all pages
-- Professional profile in About page
-- Contact forms directed to his email
-- Profile image and credentials displayed
+2. **Performance**
+   - Image optimization
+   - Component lazy loading
+   - API route optimization
+   - Caching strategies
 
-## Styling Guidelines
-- Primary color: #1a3668 (Navy Blue)
-- Secondary colors: #2C3E50, #E74C3C, #ECF0F1
-- Modern and clean design
-- Consistent spacing and typography
-- Responsive breakpoints
-- Hover effects and animations
+3. **Security**
+   - Protected admin routes
+   - Environment variables
+   - Input validation
+   - XSS prevention
 
-## Performance Considerations
-1. Image Optimization
-   - Next.js Image component for automatic optimization
-   - Proper image sizing and formats
-   - Lazy loading implementation
-
-2. Code Splitting
-   - Dynamic imports for larger components
-   - Route-based code splitting
-   - Optimized bundle sizes
-
-3. SEO
-   - Meta tags implementation
-   - Structured data
+4. **SEO**
+   - Metadata optimization
    - Semantic HTML
-   - Proper heading hierarchy
+   - Sitemap generation
+   - robots.txt configuration
 
-## Future Enhancements
-1. User Authentication
-2. Saved Properties Feature
-3. Virtual Tours Integration
-4. Property Comparison Tool
-5. Mortgage Calculator
-6. Blog Section
-7. Newsletter Integration
-8. Advanced Analytics
+## Contributing
 
-## Development Guidelines
-1. Follow TypeScript best practices
-2. Maintain component reusability
-3. Implement proper error handling
-4. Add loading states for async operations
-5. Include accessibility features
-6. Write comprehensive tests
-7. Document component props and functions
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
