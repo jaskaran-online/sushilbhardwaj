@@ -1,0 +1,67 @@
+Create a modern Next.js real estate website called "My Dream Home" with the following detailed specifications:
+
+Core Requirements:
+
+Use Next.js 14+ with TypeScript
+Implement responsive design using Tailwind CSS
+Include smooth animations using Framer Motion
+Ensure SEO optimization
+Implement modern UI/UX principles
+Page Structure:
+
+Homepage (index.js):
+Sticky navigation with logo, menu items, and contact button
+Full-width hero section with dynamic background and property search
+Featured properties carousel
+"Areas We Cover" section with interactive map
+"Why Choose Us" section
+Client testimonials
+Call-to-action section for property consultation
+Modern footer with sitemap, contact info, and social links
+About Page:
+Professional profile section for Sushil Bhardwaj
+Career highlights and achievements
+Professional certifications
+Team member profiles with hover effects
+Company values and mission statement
+Image gallery of successful projects
+Contact Page:
+Interactive contact form with validation
+Google Maps integration showing office location
+Direct contact details (phone, email)
+Office hours
+Social media links
+FAQ section
+Property Search Page:
+Advanced search filters (price, location, property type)
+Interactive map showing property locations
+Property cards with:
+High-quality images
+Basic details (price, beds, baths)
+Location
+Square footage
+Amenities
+Sort and filter options
+Pagination or infinite scroll
+Save/favorite functionality
+Technical Specifications:
+
+Use Next.js API routes for form handling
+Implement data fetching using SWR or React Query
+Add loading states and error boundaries
+Include proper meta tags for SEO
+Implement image optimization
+Add proper form validation
+Include accessibility features
+Add Google Analytics integration
+Design Elements:
+
+Use a modern color scheme (suggest: #2C3E50, #E74C3C, #ECF0F1)
+Implement subtle animations for user interactions
+Use high-quality property images
+Include micro-interactions
+Implement skeleton loading states
+Add hover effects on interactive elements
+Please implement proper error handling, loading states, and responsive design for all pages.
+
+Use uploaded images as inspration
