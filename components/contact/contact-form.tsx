@@ -1,3 +1,5 @@
+"use client"
+
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { useToast } from '@/hooks/use-toast'
@@ -23,7 +25,7 @@ export function ContactForm() {
             toast({
                 title: 'Message sent!',
                 description: 'We will get back to you as soon as possible.',
-                variant: 'success'
+                variant: 'default'
             })
             setFormData({
                 name: '',

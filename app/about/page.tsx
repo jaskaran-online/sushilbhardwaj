@@ -1,13 +1,9 @@
-import { Metadata } from 'next'
-import { TeamProfile } from '@/components/about/team-profile'
-import { CompanyValues } from '@/components/about/company-values'
-import { ProjectGallery } from '@/components/about/project-gallery'
-import { ProfessionalProfile } from '@/components/about/professional-profile'
+"use client"
 
-export const metadata: Metadata = {
-    title: 'About Us | My Dream Home',
-    description: 'Learn about our experienced real estate team and our commitment to helping you find your dream home.',
-}
+import { TeamProfile } from '../../components/about/team-profile'
+import { CompanyValues } from '../../components/about/company-values'
+import { ProjectGallery } from '../../components/about/project-gallery'
+import { ProfessionalProfile } from '../../components/about/professional-profile'
 
 export default function AboutPage() {
     return (

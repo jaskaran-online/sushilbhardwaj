@@ -1,12 +1,8 @@
-import { Metadata } from 'next'
-import { PropertySearch } from '@/components/properties/property-search'
-import { PropertyGrid } from '@/components/properties/property-grid'
-import { PropertyMap } from '@/components/properties/property-map'
+"use client"
 
-export const metadata: Metadata = {
-    title: 'Search Properties | My Dream Home',
-    description: 'Search for your dream home with our advanced property search tools.',
-}
+import { PropertySearch } from '../../components/properties/property-search'
+import { PropertyGrid } from '../../components/properties/property-grid'
+import { PropertyMap } from '../../components/properties/property-map'
 
 export default function PropertiesPage() {
     return (
