@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Search, Filter, Mail, Phone, Calendar, MapPin } from 'lucide-react'
+import { Search, Filter, Mail, Phone, Calendar, MapPin, Loader2 } from 'lucide-react'
 import { format } from 'date-fns'
 import useSWR, { mutate } from 'swr'
 import type { Inquiry, InquiryStatus } from '@/lib/inquiries'
@@ -13,14 +13,19 @@ const fetcher = async (url: string) => {
     const res = await fetch(url)
     const data = await res.json()
     if (!res.ok) {
-        throw new Error(data.error || 'An error occurred')
+        const error = new Error(data.error || 'An error occurred')
+        error.message = data.details || data.error || 'Failed to fetch data'
+        throw error
     }
     return Array.isArray(data) ? data : []
 }
 
 export function InquiriesClient() {
     const { toast } = useToast()
-    const { data: inquiries = [], error } = useSWR<Inquiry[]>('/api/inquiries', fetcher)
+    const { data: inquiries = [], error, isLoading, isValidating } = useSWR<Inquiry[]>('/api/inquiries', fetcher, {
+        revalidateOnFocus: false,
+        dedupingInterval: 5000
+    })
     const [filter, setFilter] = useState<{
         status: InquiryStatus | 'all'
         search: string
@@ -28,8 +33,6 @@ export function InquiriesClient() {
         status: 'all',
         search: '',
     })
-
-    const isLoading = !inquiries && !error
 
     async function handleStatusUpdate(inquiryId: string, newStatus: InquiryStatus) {
         try {
@@ -89,7 +92,14 @@ export function InquiriesClient() {
     if (error) {
         return (
             <div className="p-8 text-center text-red-500">
-                Error loading inquiries. Please try again later.
+                <p className="font-semibold">Error loading inquiries</p>
+                <p className="text-sm mt-2">{error.message}</p>
+                <button
+                    onClick={() => mutate('/api/inquiries')}
+                    className="mt-4 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                >
+                    Try Again
+                </button>
             </div>
         )
     }
@@ -97,7 +107,12 @@ export function InquiriesClient() {
     return (
         <div className="p-6 max-w-7xl mx-auto">
             <div className="flex justify-between items-center mb-6">
-                <h1 className="text-2xl font-bold">Inquiries</h1>
+                <div className="flex items-center gap-3">
+                    <h1 className="text-2xl font-bold">Inquiries</h1>
+                    {isValidating && (
+                        <Loader2 className="w-4 h-4 animate-spin text-gray-500" />
+                    )}
+                </div>
                 <div className="flex space-x-4">
                     {/* Search */}
                     <div className="relative">
@@ -131,9 +146,26 @@ export function InquiriesClient() {
             {/* Inquiries List */}
             <div className="bg-white rounded-lg shadow">
                 {isLoading ? (
-                    <div className="p-8 text-center text-gray-500">Loading inquiries...</div>
+                    <div className="p-8 text-center text-gray-500">
+                        <Loader2 className="w-6 h-6 animate-spin mx-auto mb-2" />
+                        <p>Loading inquiries...</p>
+                    </div>
                 ) : filteredInquiries.length === 0 ? (
-                    <div className="p-8 text-center text-gray-500">No inquiries found</div>
+                    <div className="p-8 text-center text-gray-500">
+                        {filter.search || filter.status !== 'all' ? (
+                            <>
+                                <p>No inquiries found matching your filters</p>
+                                <button
+                                    onClick={() => setFilter({ status: 'all', search: '' })}
+                                    className="mt-2 text-primary hover:underline"
+                                >
+                                    Clear filters
+                                </button>
+                            </>
+                        ) : (
+                            <p>No inquiries found</p>
+                        )}
+                    </div>
                 ) : (
                     <div className="divide-y">
                         {filteredInquiries.map((inquiry: Inquiry) => (
