@@ -12,8 +12,8 @@ export default function Home() {
       <FeaturedProperties />
       <AreasWeCover />
       <WhyChooseUs />
-      <Testimonials />
       <CallToAction />
+      <Testimonials />
     </div>
   )
 }

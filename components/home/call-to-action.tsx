@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 export function CallToAction() {
   return (
     <section className="relative py-16 overflow-hidden">
-      <div className="absolute inset-0 bg-primary dark:bg-primary/90" />
+      <div className="absolute inset-0 bg-[dodgerblue] dark:bg-primary/90" />
       <div className="container relative mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -52,9 +52,9 @@ export function WhyChooseUs() {
               className="text-center"
             >
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <feature.icon className="h-12 w-12 text-primary mx-auto mb-4" />
-                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <feature.icon className="h-12 w-12 mx-auto mb-4 text-[dodgerblue]" />
+                <h3 className="text-lg font-semibold mb-2 text-slate-900">{feature.title}</h3>
+                <p className="text-gray-600 text-foreground">{feature.description}</p>
               </div>
             </motion.div>
           ))}

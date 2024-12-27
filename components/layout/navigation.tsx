@@ -32,7 +32,7 @@ export function Navigation() {
         "fixed w-full z-50 transition-all duration-300",
         isScrolled
           ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-          : "bg-transparent"
+          : "backdrop-blur supports-[backdrop-filter]:bg-background/50 dark:bg-background/60"
       )}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -50,7 +50,7 @@ export function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-foreground/90 hover:text-primary transition-colors"
+                className="text-sm  font-medium text-foreground/90 hover:text-primary transition-colors"
               >
                 {item.label}
               </Link>
