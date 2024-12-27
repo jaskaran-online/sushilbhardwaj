@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getInquiries } from '@/lib/inquiries'
+import type { Inquiry } from '@/lib/inquiries'
 
 export async function GET() {
     try {
@@ -7,9 +8,17 @@ export async function GET() {
         return NextResponse.json(inquiries)
     } catch (error) {
         console.error('Failed to fetch inquiries:', error)
-        return NextResponse.json(
-            { error: 'Failed to fetch inquiries' },
-            { status: 500 }
+        return new NextResponse(
+            JSON.stringify({
+                error: 'Failed to fetch inquiries',
+                details: error instanceof Error ? error.message : 'Unknown error'
+            }),
+            {
+                status: 500,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
         )
     }
 } 

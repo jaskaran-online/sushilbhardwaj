@@ -9,11 +9,18 @@ import type { Inquiry, InquiryStatus } from '@/lib/inquiries'
 import { updateInquiryStatus, deleteInquiry } from '@/lib/inquiries'
 import { useToast } from '@/hooks/use-toast'
 
-const fetcher = (url: string) => fetch(url).then(res => res.json())
+const fetcher = async (url: string) => {
+    const res = await fetch(url)
+    const data = await res.json()
+    if (!res.ok) {
+        throw new Error(data.error || 'An error occurred')
+    }
+    return Array.isArray(data) ? data : []
+}
 
 export function InquiriesClient() {
     const { toast } = useToast()
-    const { data: inquiries, error } = useSWR<Inquiry[]>('/api/inquiries', fetcher)
+    const { data: inquiries = [], error } = useSWR<Inquiry[]>('/api/inquiries', fetcher)
     const [filter, setFilter] = useState<{
         status: InquiryStatus | 'all'
         search: string
@@ -64,7 +71,7 @@ export function InquiriesClient() {
         }
     }
 
-    const filteredInquiries = inquiries?.filter((inquiry: Inquiry) => {
+    const filteredInquiries = inquiries.filter((inquiry: Inquiry) => {
         if (filter.status !== 'all' && inquiry.status !== filter.status) {
             return false
         }
@@ -77,7 +84,7 @@ export function InquiriesClient() {
             )
         }
         return true
-    }) ?? []
+    })
 
     if (error) {
         return (

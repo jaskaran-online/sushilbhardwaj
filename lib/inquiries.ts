@@ -17,7 +17,7 @@ export interface Inquiry {
 
 export async function getInquiries() {
     const { data, error } = await supabase
-        .from('inquiries')
+        .from('contact_inquiries')
         .select('*')
         .order('created_at', { ascending: false })
 
@@ -31,7 +31,7 @@ export async function getInquiries() {
 
 export async function updateInquiryStatus(inquiryId: string, status: InquiryStatus) {
     const { error } = await supabase
-        .from('inquiries')
+        .from('contact_inquiries')
         .update({ status, updated_at: new Date().toISOString() })
         .eq('id', inquiryId)
 
@@ -43,7 +43,7 @@ export async function updateInquiryStatus(inquiryId: string, status: InquiryStat
 
 export async function createInquiry(inquiry: Omit<Inquiry, 'id' | 'status' | 'created_at' | 'updated_at'>) {
     const { error } = await supabase
-        .from('inquiries')
+        .from('contact_inquiries')
         .insert([
             {
                 ...inquiry,
@@ -61,7 +61,7 @@ export async function createInquiry(inquiry: Omit<Inquiry, 'id' | 'status' | 'cr
 
 export async function deleteInquiry(inquiryId: string) {
     const { error } = await supabase
-        .from('inquiries')
+        .from('contact_inquiries')
         .delete()
         .eq('id', inquiryId)
 
