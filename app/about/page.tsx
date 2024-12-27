@@ -1,9 +1,9 @@
 "use client"
 
-import { TeamProfile } from '../../components/about/team-profile'
-import { CompanyValues } from '../../components/about/company-values'
-import { ProjectGallery } from '../../components/about/project-gallery'
-import { ProfessionalProfile } from '../../components/about/professional-profile'
+import { TeamProfile } from '@/components/about/team-profile'
+import { CompanyValues } from '@/components/about/company-values'
+import { ProjectGallery } from '@/components/about/project-gallery'
+import { ProfessionalProfile } from '@/components/about/professional-profile'
 
 export default function AboutPage() {
     return (

@@ -1,8 +1,8 @@
 "use client"
 
-import { PropertySearch } from '../../components/properties/property-search'
-import { PropertyGrid } from '../../components/properties/property-grid'
-import { PropertyMap } from '../../components/properties/property-map'
+import { PropertySearch } from '@/components/properties/property-search'
+import { PropertyGrid } from '@/components/properties/property-grid'
+import { PropertyMap } from '@/components/properties/property-map'
 
 export default function PropertiesPage() {
     return (
